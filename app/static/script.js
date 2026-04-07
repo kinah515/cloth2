@@ -6,6 +6,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const resultImage = document.getElementById("result-image");
     const resultPinterestLink = document.getElementById("result-pinterest-link");
     const resultText = document.getElementById("result-text");
+    const logo = document.querySelector(".logo");
+
+    // 로고 클릭 시 첫 화면으로 돌아가기 (초기화)
+    logo.style.cursor = "pointer";
+    logo.addEventListener("click", () => {
+        input.value = "";
+        resultContainer.classList.add("hidden");
+        loading.classList.add("hidden");
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();

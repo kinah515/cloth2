@@ -1,0 +1,38 @@
+name: Docker Build and Push Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 저장소에서 코드를 가져옵니다.
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Docker 빌드를 위한 최신 기능(Buildx)을 설정합니다.
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # 3. GitHub Secrets에 저장된 자격 증명으로 Docker Hub에 로그인합니다.
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 4. Docker 이미지를 빌드하고 레지스트리에 푸시합니다.
+      # 레지스트리 캐시를 활용해 재빌드 속도를 높입니다.
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          # <DOCKERHUB_USERNAME>/<repo-name>:latest 형태로 태그 지정
+          # 레포지토리 이름(fashion-ai-mvp)은 필요에 따라 적절히 변경하세요.
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/fashion-ai-mvp:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/fashion-ai-mvp:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/fashion-ai-mvp:buildcache,mode=max

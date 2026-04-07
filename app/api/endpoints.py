@@ -17,12 +17,12 @@ async def get_ootd_recommendation(request: OOTDRequest):
         pinterest_deep_link = "https://pin.it/93SaraDyk"
     elif "데이트" in query or "소개팅" in query:
         recommendation_text = "깔끔한 인상을 주는 베이지 슬랙스와 파스텔 톤 셔츠를 추천합니다. 단정하면서도 따뜻한 느낌을 줄 수 있어요."
-        pinterest_image_url = "https://i.pinimg.com/736x/mock_date_outfit.jpg" # 임시 Mock URL
-        pinterest_deep_link = "pinterest://search/pins/?q=mens%20date%20outfit"
+        pinterest_image_url = "https://i.pinimg.com/736x/c6/bd/42/c6bd425c7f0fa89f8fda74e73f2ec948.jpg" # 임시 Mock URL
+        pinterest_deep_link = "https://kr.pinterest.com/pin/21603273207766637/"
     else:
         recommendation_text = "오늘은 편안하면서도 스타일리시한 미니멀 캐주얼 룩 어떨까요? 오버핏 티셔츠와 와이드 데님 팬츠 조합에 스니커즈를 추천드려요."
-        pinterest_image_url = "https://i.pinimg.com/736x/mock_casual_outfit.jpg" # 임시 Mock URL
-        pinterest_deep_link = "pinterest://search/pins/?q=mens%20casual%20outfit"
+        pinterest_image_url = "https://i.pinimg.com/736x/1d/95/1a/1d951affe259f37ad09500f7b64c0a40.jpg" # 임시 Mock URL
+        pinterest_deep_link = "https://kr.pinterest.com/pin/4362930883870022/"
 
     return OOTDResponse(
         recommendation_text=recommendation_text,

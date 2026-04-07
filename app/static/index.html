@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSINSA VIBE | Fashion AI</title>
+    <!-- 구글 폰트: 무신사 특유의 깔끔한 Noto Sans 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 헤더 -->
+        <header class="header">
+            <div class="logo">FASHION AI</div>
+        </header>
+
+        <!-- 메인 컨텐츠 -->
+        <main class="content">
+            <section class="intro-section">
+                <h1 class="title">What's your plan?</h1>
+                <p class="subtitle">AI가 상황에 맞는 완벽한 OOTD를 추천해 드립니다.</p>
+            </section>
+
+            <!-- 입력 폼 -->
+            <form id="ootd-form" class="search-form">
+                <div class="input-wrapper">
+                    <input type="text" id="query-input" placeholder="내일 바다 가는데 뭐 입지?" required autocomplete="off">
+                    <button type="submit" class="submit-btn">추천받기</button>
+                </div>
+            </form>
+
+            <!-- 로딩 화면 -->
+            <div id="loading" class="loading-state hidden">
+                <div class="spinner"></div>
+                <p>스타일 스캐닝 중...</p>
+            </div>
+
+            <!-- 결과 표시 화면 -->
+            <div id="result-container" class="result-container hidden">
+                <div class="image-wrapper">
+                    <img id="result-image" src="" alt="OOTD Recommendation">
+                    <div class="image-overlay">
+                        <a id="result-pinterest-link" href="#" target="_blank" class="pinterest-btn">
+                            <span class="btn-text">핀터레스트에서 보기</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="text-wrapper">
+                    <h2 class="result-title">RECOMMENDATION</h2>
+                    <p id="result-text" class="result-text"></p>
+                </div>
+            </div>
+            
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

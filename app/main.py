@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from app.api.endpoints import router as ootd_router
 
 app = FastAPI(
@@ -17,8 +19,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 app.include_router(ootd_router, prefix="/api/v1/ootd", tags=["OOTD"])
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to Fashion AI MVP API Server. Please visit /docs for API documentation."}
+    return FileResponse("app/static/index.html")

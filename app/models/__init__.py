@@ -1,2 +1,0 @@
-class OOTDRequest(BaseModel):
-    pass
